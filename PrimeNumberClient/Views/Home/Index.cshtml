@@ -1,0 +1,42 @@
+﻿
+<h5>Get Prime Number By Index</h5>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="indexInput">Index</label>
+            <input type="number" class="form-control" id="indexInput" placeholder="Enter index">
+        </div>
+        <button onclick="getPrimeNumber()" class="btn btn-primary">Get Prime Number</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="indexInput">Result</label>
+            <input readonly type="number" class="form-control" id="resultInput">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+
+    function getPrimeNumber() {
+        let indexValue = $('#indexInput').val();
+        let url = "@Url.Action("GetPrimeNumberFromApi", "Home")?index=" +  indexValue;
+        $.get( url, function (resultString) {
+            let result = JSON.parse(resultString);
+
+            if (!result.succeeded) {
+                alert(result.errorMessage)
+            }
+            else {
+                $('#resultInput').val(result.data);
+            }
+
+        })
+    }
+
+    </script>
+}
