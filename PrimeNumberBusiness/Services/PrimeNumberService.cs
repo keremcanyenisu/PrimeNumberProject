@@ -41,7 +41,7 @@ namespace PrimeNumberBusiness.Services
                 return await Task.FromResult(existingCalculation.PrimeNumber);
             }
 
-            List<int> calculatedPrimeNumbers = new List<int>();
+            List<int> calculatedPrimeNumbers = new List<int> { 2 };
 
             for (int i = 3; ; i += 2)
             {
